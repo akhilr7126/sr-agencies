@@ -47,7 +47,6 @@ export default function HowItWorksPage() {
                                 fontWeight: 800,
                                 color: 'var(--bg-off-white)',
                                 lineHeight: 1,
-                                textStroke: '1px var(--primary-blue)',
                                 WebkitTextStroke: '1px var(--primary-blue)',
                                 minWidth: '80px'
                             }}>

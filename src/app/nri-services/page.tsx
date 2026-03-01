@@ -48,7 +48,7 @@ export default function NRIServicesPage() {
                         Managing your investment in India shouldn't be a burden. <br />
                         We act as your eyes and ears on the ground.
                     </p>
-                    <Button href="/contact" variant="primary" style={{ backgroundColor: 'var(--secondary-green)' }}>
+                    <Button href="/contact" variant="primary">
                         Schedule a Free Consultation
                     </Button>
                 </div>
