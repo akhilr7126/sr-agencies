@@ -6,11 +6,31 @@ import Button from '../../components/ui/Button/Button';
 export default function ContactPage() {
     const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setFormStatus('submitting');
-        // Simulate submission
-        setTimeout(() => setFormStatus('success'), 1500);
+
+        const formData = new FormData(e.currentTarget);
+
+        try {
+            const response = await fetch("https://formspree.io/f/mrerwaeo", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                setFormStatus('success');
+            } else {
+                setFormStatus('idle');
+                alert("Oops! There was a problem submitting your form.");
+            }
+        } catch (error) {
+            setFormStatus('idle');
+            alert("Oops! There was a problem submitting your form.");
+        }
     };
 
     return (
@@ -31,20 +51,24 @@ export default function ContactPage() {
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                                 <div>
                                     <h5 style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '0.25rem' }}>Email</h5>
-                                    <p>info@sragencies.com</p>
+                                    <p>sr9009@hotmail.com</p>
                                 </div>
                                 <div>
-                                    <h5 style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '0.25rem' }}>Phone / WhatsApp</h5>
-                                    <p>+91 987 654 3210</p>
+                                    <h5 style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '0.25rem' }}>Phone (India)</h5>
+                                    <p>+91 9346399745<br />+91 8978884644<br />+91 8919519942</p>
+                                </div>
+                                <div style={{ marginTop: '1rem' }}>
+                                    <h5 style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '0.25rem' }}>Phone (US)</h5>
+                                    <p>+1 2709967651<br />+1 2707791191</p>
                                 </div>
                                 <div>
                                     <h5 style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '0.25rem' }}>Address</h5>
-                                    <p>Hyderabad, Telangana, India</p>
+                                    <p>S R Agencies<br />Srusti Symphony<br />B-305, Kalajyothi Road<br />Opp RYAN International School<br />Masidbanda<br />Kondapur, HYD - 500084</p>
                                 </div>
                             </div>
 
                             <div style={{ marginTop: '3rem' }}>
-                                <Button href="https://wa.me/919876543210" variant="secondary" fullWidth>Chat on WhatsApp</Button>
+                                <Button href="https://wa.me/919346399745" variant="secondary" fullWidth>Chat on WhatsApp</Button>
                             </div>
                         </div>
 
@@ -62,6 +86,7 @@ export default function ContactPage() {
                                         <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Name</label>
                                         <input
                                             type="text"
+                                            name="name"
                                             required
                                             style={{ width: '100%', padding: '0.75rem', borderRadius: 'var(--radius-md)', border: '1px solid #ddd' }}
                                             placeholder="Your Name"
@@ -71,6 +96,7 @@ export default function ContactPage() {
                                         <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Email</label>
                                         <input
                                             type="email"
+                                            name="email"
                                             required
                                             style={{ width: '100%', padding: '0.75rem', borderRadius: 'var(--radius-md)', border: '1px solid #ddd' }}
                                             placeholder="your@email.com"
@@ -79,6 +105,7 @@ export default function ContactPage() {
                                     <div>
                                         <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Message</label>
                                         <textarea
+                                            name="message"
                                             required
                                             rows={4}
                                             style={{ width: '100%', padding: '0.75rem', borderRadius: 'var(--radius-md)', border: '1px solid #ddd' }}

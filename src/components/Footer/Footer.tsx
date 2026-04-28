@@ -39,8 +39,8 @@ const Footer = () => {
                         <h4>Contact</h4>
                         <div className={styles.links}>
                             <p>Hyderabad, Telangana</p>
-                            <a href="mailto:info@sragencies.com">info@sragencies.com</a>
-                            <a href="tel:+919876543210">+91 987 654 3210</a>
+                            <a href="mailto:sr9009@hotmail.com">sr9009@hotmail.com</a>
+                            <a href="tel:+919346399745">+91 9346399745</a>
                         </div>
                     </div>
                 </div>
